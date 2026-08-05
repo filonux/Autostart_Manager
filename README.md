@@ -19,6 +19,15 @@
 
 ## ¿Qué es?
 
+
+<img width="676" height="450" alt="1 autostart_manager" src="https://github.com/user-attachments/assets/d884195b-1cae-4c0a-9735-d8bbb3be21c9" />
+<img width="1100" height="630" alt="2 programas_inicio" src="https://github.com/user-attachments/assets/7bfb5633-0ea4-48fc-8311-972502d476b3" />
+<img width="458" height="285" alt="3 filtrado_programas" src="https://github.com/user-attachments/assets/927840be-73f6-4c38-a95e-432252a27a6e" />
+<img width="1097" height="625" alt="4 procesos_segundoplano" src="https://github.com/user-attachments/assets/ce874d41-8839-45fa-948c-2198f110d249" />
+<img width="1102" height="630" alt="5 servicios_linuxmint" src="https://github.com/user-attachments/assets/b35e5144-0982-4d88-b29b-89f99e26f71b" />
+<img width="1098" height="624" alt="6 todas_pestañas" src="https://github.com/user-attachments/assets/c3d9e6b2-befe-40a3-b8e9-9ead39667a8b" />
+
+
 **Autostart Manager** es un script de Bash con interfaz gráfica (vía `zenity`) que junta en **una sola tabla** las cinco formas distintas que tiene Linux de arrancar cosas automáticamente:
 
 1. Aplicaciones de autostart de **usuario** (`~/.config/autostart`)
