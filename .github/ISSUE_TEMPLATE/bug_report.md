@@ -1,38 +1,45 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+name: Reporte de error
+about: Algo no funciona como debería
+title: "[BUG] "
+labels: bug
 assignees: ''
-
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Descripción del problema
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+Explica claramente qué está pasando.
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Pasos para reproducirlo
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+1. Abrí el script con '...'
+2. Marqué/desmarqué '...'
+3. Pulsé '...'
+4. Ocurrió el error
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## Comportamiento esperado
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+Qué debería haber pasado en su lugar.
 
-**Additional context**
-Add any other context about the problem here.
+## Capturas de pantalla
+
+Si aplica, añade capturas que ayuden a explicar el problema.
+
+## Entorno
+
+- Distro y versión: (ej. Linux Mint 22.3 Cinnamon)
+- Sesión: X11 / Wayland
+- Versión de `zenity`: (`zenity --version`)
+- Versión de Bash: (`bash --version`)
+
+## Mensajes de error / salida de terminal
+
+Si ejecutaste el script desde una terminal con `bash -x script/Autostart_Manager.sh` y hay salida relevante, pégala aquí dentro de un bloque de código.
+
+```
+(pega aquí la salida)
+```
+
+## Contexto adicional
+
+Cualquier otro detalle que pueda ser útil (elemento concreto que falla, si es de usuario/sistema/systemd/cron, etc.).
