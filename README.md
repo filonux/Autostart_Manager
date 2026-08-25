@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/icon.png" width="120" alt="Icono de Autostart Manager">
+  <img src="assets/icon.png" width="140" alt="Icono de Autostart Manager">
 </p>
 
 <h1 align="center">Autostart Manager</h1>
