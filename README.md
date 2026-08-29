@@ -169,6 +169,4 @@ Distribuido bajo la licencia **GNU General Public License v3.0 (GPLv3)**. Consul
 
 ---
 
-<p align="center">
-Copyright © 2026 Filonux
-</p>
+Hecho por **[Filonux](https://github.com/filonux)**.
