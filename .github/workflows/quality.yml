@@ -33,6 +33,24 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Restore executable bits on the test scripts
+        # Files added through the GitHub web interface, or from a filesystem without POSIX modes, are stored as 0644,
+        # so a fresh checkout has no executable bit. CONTRIBUTING.md runs the suites directly (tests/run_all.sh) and
+        # test_suite_quality.sh does the same, so restore the bit here and leave a warning that names the real fix.
+        shell: bash
+        run: |
+          set -euo pipefail
+          restored=0
+          for suite in tests/*.sh; do
+              if [[ ! -x "$suite" ]]; then
+                  chmod +x "$suite"
+                  restored=$((restored + 1))
+              fi
+          done
+          if (( restored )); then
+              echo "::warning title=Test scripts not executable in git::${restored} script(s) under tests/ are stored without the executable bit. Run: git update-index --chmod=+x tests/*.sh"
+          fi
+
       - name: Install UI test dependencies
         shell: bash
         run: |
