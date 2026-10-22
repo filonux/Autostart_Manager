@@ -1,45 +1,38 @@
 ---
-name: Reporte de error
-about: Algo no funciona como debería
+name: Bug report
+about: Report behaviour that does not work as expected
 title: "[BUG] "
 labels: bug
 assignees: ''
 ---
 
-## Descripción del problema
+## Problem
 
-Explica claramente qué está pasando.
+Describe what happened and what you expected instead.
 
-## Pasos para reproducirlo
+## Steps to reproduce
 
-1. Abrí el script con '...'
-2. Marqué/desmarqué '...'
-3. Pulsé '...'
-4. Ocurrió el error
+1. Run the script with `...`.
+2. Open `...`.
+3. Select or change `...`.
+4. Observe `...`.
 
-## Comportamiento esperado
+## Environment
 
-Qué debería haber pasado en su lugar.
+- Distribution and version: (for example, Ubuntu 24.04)
+- Desktop and session: (for example, GNOME on Wayland)
+- Zenity version: (`zenity --version`)
+- Bash version: (`bash --version`)
+- Autostart Manager version:
 
-## Capturas de pantalla
+## Relevant output
 
-Si aplica, añade capturas que ayuden a explicar el problema.
+Paste relevant terminal output or errors. Use a code block and remove credentials or private data.
 
-## Entorno
-
-- Distro y versión: (ej. Linux Mint 22.3 Cinnamon)
-- Sesión: X11 / Wayland
-- Versión de `zenity`: (`zenity --version`)
-- Versión de Bash: (`bash --version`)
-
-## Mensajes de error / salida de terminal
-
-Si ejecutaste el script desde una terminal con `bash -x script/Autostart_Manager.sh` y hay salida relevante, pégala aquí dentro de un bloque de código.
-
-```
-(pega aquí la salida)
+```text
+Paste output here.
 ```
 
-## Contexto adicional
+## Additional context
 
-Cualquier otro detalle que pueda ser útil (elemento concreto que falla, si es de usuario/sistema/systemd/cron, etc.).
+Include whether the affected item is user autostart, system autostart, systemd user/system, or cron, plus any relevant `.desktop` or unit characteristics.
