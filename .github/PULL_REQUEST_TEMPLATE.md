@@ -1,25 +1,30 @@
-## Descripción
+## Description
 
-Explica qué cambia este PR y por qué.
+Describe what this pull request changes and why.
 
-## Tipo de cambio
+## Change type
 
-- [ ] Corrección de error
-- [ ] Función nueva
-- [ ] Cambio en la documentación (README, plantillas, etc.)
-- [ ] Refactor / limpieza interna sin cambio de comportamiento
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Documentation change
+- [ ] Internal refactor without behaviour change
 
-## ¿Cómo lo probaste?
+## Testing
 
-Describe en qué distro/entorno lo probaste y qué casos verificaste (autostart de usuario, de sistema, systemd, cron...).
+Describe the environment and the tests you ran.
 
-- Distro y versión:
-- Sesión: X11 / Wayland
+- Distribution and version:
+- Desktop and session: (for example, GNOME on Wayland)
+- `bash --version`:
+- `zenity --version`:
+- `tests/run_all.sh` result:
 
 ## Checklist
 
-- [ ] Probé el script manualmente después de mis cambios y sigue funcionando
-- [ ] Pasé `shellcheck` sobre `script/Autostart_Manager.sh` y no introduje warnings nuevos
-- [ ] Los comentarios que añadí explican el *por qué*, no repiten lo obvio del *qué*
-- [ ] Actualicé el README si el cambio afecta al uso o los requisitos
-- [ ] No incluí archivos generados, temporales ni credenciales
+- [ ] Bash syntax checks pass.
+- [ ] `bash tests/lint.sh` passes (ShellCheck 0.11.0) for the changed shell files.
+- [ ] The relevant automated tests pass.
+- [ ] Comments explain non-obvious decisions rather than restating code.
+- [ ] Documentation was updated when usage or requirements changed.
+- [ ] No generated files, credentials, or temporary files are included.
+- [ ] Existing filenames were not renamed.
