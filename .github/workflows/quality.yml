@@ -1,0 +1,70 @@
+name: Quality
+
+on:
+  # A pull request is checked by its own trigger; a push filter keeps the same commits from running twice.
+  # The branch below is the one CONTRIBUTING.md asks pull requests to target.
+  push:
+    branches: [Filonux-Box]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests-and-shellcheck:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SHELLCHECK_VERSION: 0.11.0
+      SHELLCHECK_SHA256: 8c3be12b05d5c177a04c29e3c78ce89ac86f1595681cab149b65b97c4e227198
+      REQUIRE_SHELLCHECK: "1"
+      REQUIRE_UI_SMOKE: "1"
+      REQUIRE_PILLOW: "1"
+      REQUIRE_DESKTOP_VALIDATE: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install UI test dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=3 update
+          sudo apt-get install --yes --no-install-recommends zenity xvfb imagemagick python3-pil python3-yaml fonts-dejavu-core desktop-file-utils xz-utils
+
+      - name: Install pinned ShellCheck
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="shellcheck-v${SHELLCHECK_VERSION}.linux.x86_64.tar.xz"
+          url="https://github.com/koalaman/shellcheck/releases/download/v${SHELLCHECK_VERSION}/${archive}"
+          curl --fail --location --retry 4 --retry-delay 2 --output "$RUNNER_TEMP/$archive" "$url"
+          printf '%s  %s\n' "$SHELLCHECK_SHA256" "$RUNNER_TEMP/$archive" | sha256sum --check --status
+          tar -xJf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP"
+          install -m 0755 "$RUNNER_TEMP/shellcheck-v${SHELLCHECK_VERSION}/shellcheck" "$RUNNER_TEMP/shellcheck"
+          echo "SHELLCHECK_BIN=$RUNNER_TEMP/shellcheck" >> "$GITHUB_ENV"
+          "$RUNNER_TEMP/shellcheck" --version
+
+      - name: Run static analysis
+        run: bash ./tests/lint.sh
+
+      - name: Check Bash syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          for file in script/*.sh tests/*.sh; do
+              bash -n "$file"
+          done
+
+      - name: Run test suites
+        env:
+          AUTOSTART_MANAGER_TEST_TIMEOUT: "120"
+        run: bash ./tests/run_all.sh
