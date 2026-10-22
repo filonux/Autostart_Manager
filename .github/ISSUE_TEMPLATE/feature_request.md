@@ -1,23 +1,27 @@
 ---
-name: Solicitud de función
-about: Proponer una idea o mejora para el proyecto
+name: Feature request
+about: Propose an improvement or new capability
 title: "[FEATURE] "
 labels: enhancement
 assignees: ''
 ---
 
-## ¿Qué problema resuelve?
+## Problem or use case
 
-Describe qué necesidad o molestia te lleva a proponer esto. Ej: "Actualmente no hay forma de..."
+What problem, limitation, or workflow would this change improve?
 
-## Solución propuesta
+## Proposed solution
 
-Describe cómo te imaginas que funcionaría.
+Describe the expected behaviour and user-facing result.
 
-## Alternativas consideradas
+## Alternatives considered
 
-¿Hay alguna otra forma de resolverlo que hayas pensado o probado?
+Describe other approaches you considered and why they are less suitable.
 
-## Contexto adicional
+## Scope and compatibility
 
-Capturas, ejemplos de otras herramientas, o cualquier detalle que ayude a entender mejor la propuesta.
+Note any impact on other distributions or desktops, X11/Wayland, systemd, cron, XDG configuration, or existing command-line options.
+
+## Additional context
+
+Add examples, screenshots, references, or related issues when useful.
