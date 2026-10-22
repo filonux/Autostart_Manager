@@ -71,6 +71,16 @@ check 'workflow checks syntax file by file' \
 check 'workflow never passes several files to a single bash -n' \
     "$(count 'bash -n ')/$(fixed 'bash -n "$file"')" 1/1
 check 'workflow runs every suite through run_all' "$(fixed 'run: bash ./tests/run_all.sh')" 1
+# A checkout of files stored as 0644 has no executable bit, yet CONTRIBUTING.md and test_suite_quality.sh run
+# tests/run_all.sh directly. The workflow restores the bit before anything from tests/ runs.
+check 'workflow restores the executable bit of every test script' \
+    "$(fixed 'for suite in tests/*.sh; do')/$(fixed 'chmod +x "$suite"')" 1/1
+restore_order=$(awk '
+    /chmod \+x "\$suite"/ { if (!restore) restore = NR }
+    /run: bash \.\/tests\/lint\.sh/ { if (!lint) lint = NR }
+    END { print (restore && lint && restore < lint) ? "yes" : "no" }
+' "$WORKFLOW")
+check 'executable bits are restored before the lint gate and the suites run' "$restore_order" yes
 check 'workflow requires ShellCheck and the real UI smoke test' \
     "$(fixed 'REQUIRE_SHELLCHECK: "1"')$(fixed 'REQUIRE_UI_SMOKE: "1"')" 11
 check 'workflow installs the UI test dependencies' "$(fixed 'zenity xvfb imagemagick')" 1
@@ -89,7 +99,7 @@ job = jobs.get('tests-and-shellcheck', {})
 print(len(jobs), len(job.get('steps', [])), doc.get(True, doc.get('on')) is not None)
 PY
 )
-    check 'workflow YAML parses with one job and its steps' "$parsed" '1 6 True'
+    check 'workflow YAML parses with one job and its steps' "$parsed" '1 7 True'
 else
     printf 'SKIP: PyYAML is not available; structural checks above still apply.\n'
 fi
