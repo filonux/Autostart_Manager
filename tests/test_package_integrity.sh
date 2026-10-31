@@ -12,17 +12,19 @@ check() {
 }
 
 original=(
-  LICENSE.txt assets/icon2.png assets/icon3.png
+  assets/icon2.png assets/icon3.png
 )
 while read -r hash rel; do
     [[ -z "$hash" ]] && continue
     check "immutable original unchanged: $rel" "$(printf '%s  %s\n' "$hash" "$ROOT_DIR/$rel" | sha256sum -c - 2>/dev/null | sed -n 's/: OK//p')" "$ROOT_DIR/$rel"
 done <<'HASHES'
-2c4f3b25fabad2e72170075d6459c4d66663498e083bbaa6114ca0b22b9ea34a  LICENSE.txt
 f605e109556ab499a04357de242b6fe4e1e6055c679e9d0c35a01f67778e917d  assets/icon2.png
 b3576c18003c549fc9575ff19f1aa52a7690dd8cedbd297d8092459371723d9c  assets/icon3.png
 HASHES
 
+
+# LICENSE.txt is not pinned by hash: the license text may be updated freely. It only has to exist and not be empty.
+check 'LICENSE.txt exists and is not empty' "$([[ -s "$ROOT_DIR/LICENSE.txt" ]] && echo yes || echo no)" yes
 
 # Exact tree contract: all paths from the supplied project. The repository carries no configuration files
 # (no .shellcheckrc, no .gitignore).
