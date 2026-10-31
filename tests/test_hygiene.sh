@@ -1,6 +1,6 @@
 #!/bin/bash
 # Repository hygiene: text files must be clean for diffs, editors and CI.
-# LICENSE.txt is kept byte-for-byte as supplied (its hash is pinned elsewhere).
+# LICENSE.txt is excluded from these checks: a license text keeps its own layout and line endings.
 set -uE -o pipefail
 
 ROOT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
